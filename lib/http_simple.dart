@@ -1,22 +1,14 @@
-library http_simple;
+library;
 
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import 'consts.dart';
-import 'enums/hs_response_status.dart';
-import 'enums/http_methods.dart';
-import 'log_simple.dart';
-import 'models/attachment_file.dart';
-import 'models/hs_response.dart';
-import 'utils.dart';
+import 'src/_src_exp.dart';
 
 Future<Response> get({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final String url,
   final Map<String, String> headers = defaultJsonHeaders,
@@ -81,8 +73,8 @@ Future<Response> get({
 
 Future<Response> post({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final String url,
   final Map<String, String> headers = defaultJsonHeaders,
@@ -152,8 +144,8 @@ Future<Response> post({
 
 Future<Response> put({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final String url,
   final Map<String, String> headers = defaultJsonHeaders,
@@ -222,8 +214,8 @@ Future<Response> put({
 
 Future<Response> patch({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final String url,
   final Map<String, String> headers = defaultJsonHeaders,
@@ -291,8 +283,8 @@ Future<Response> patch({
 
 Future<Response> delete({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final String url,
   final Map<String, String> headers = defaultJsonHeaders,
@@ -362,8 +354,8 @@ Future<Response> delete({
 
 Future<Response> apiCallForFile({
   final Function(Response)? onResponse,
-  final VoidCallback? onTimeout,
-  final VoidCallback? onNoInternet,
+  final Function()? onTimeout,
+  final Function()? onNoInternet,
   required final String tag,
   required final HttpMethods apiMethod,
   required final String url,

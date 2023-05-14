@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class HttpHeaderTypes {
   static const applicationJson = 'application/json';
   static const multipartFormData = 'multipart/form-data';
@@ -7,14 +5,14 @@ class HttpHeaderTypes {
 }
 
 const defaultJsonHeaders = {
-  HttpHeaders.contentTypeHeader: HttpHeaderTypes.applicationJson,
-  HttpHeaders.acceptHeader: HttpHeaderTypes.applicationJson,
+  'content-type': HttpHeaderTypes.applicationJson,
+  'accept': HttpHeaderTypes.applicationJson,
 };
 
 Map<String, String> jsonHeadersWithBearer(String token) => {
-      HttpHeaders.contentTypeHeader: HttpHeaderTypes.applicationJson,
-      HttpHeaders.acceptHeader: HttpHeaderTypes.applicationJson,
-      HttpHeaders.authorizationHeader: 'Bearer $token',
+      'content-type': HttpHeaderTypes.applicationJson,
+      'accept': HttpHeaderTypes.applicationJson,
+      'authorization': 'Bearer $token',
     };
 
 const Duration defaultTimeoutDuration = Duration(seconds: 90);

@@ -3,14 +3,14 @@ import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
 
 const _ansiResetCode = '\x1B[0m';
-const _ansiColorBlack = '\x1B[30m';
 const _ansiColorRed = '\x1B[31m';
 const _ansiColorGreen = '\x1B[32m';
-const _ansiColorYellow = '\x1B[33m';
-const _ansiColorBlue = '\x1B[34m';
-const _ansiColorPurple = '\x1B[35m';
-const _ansiColorCyan = '\x1B[36m';
-const _ansiColorWhite = '\x1B[37m';
+// const _ansiColorBlack = '\x1B[30m';
+// const _ansiColorYellow = '\x1B[33m';
+// const _ansiColorBlue = '\x1B[34m';
+// const _ansiColorPurple = '\x1B[35m';
+// const _ansiColorCyan = '\x1B[36m';
+// const _ansiColorWhite = '\x1B[37m';
 
 enum LogType {
   success(_ansiColorGreen),
@@ -50,12 +50,12 @@ void printDebugLog({
   required final String message,
   LogType? logType,
 }) {
-  if (kReleaseMode) return;
-
-  if (kIsWeb) {
-    print('$tag: $message');
-  } else {
-    dev.log(LogType.buildLog(message: message, logType: logType), name: tag);
+  if (kDebugMode) {
+    if (kIsWeb) {
+      print('$tag: $message');
+    } else {
+      dev.log(LogType.buildLog(message: message, logType: logType), name: tag);
+    }
   }
 }
 

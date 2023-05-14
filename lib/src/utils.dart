@@ -1,11 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-import 'enums/hs_response_status.dart';
-import 'log_simple.dart';
-import 'models/error_code_and_message.dart';
-import 'models/hs_response.dart';
+import '_src_exp.dart';
 
 Future<String> getFullURL(
   final String url,
@@ -42,8 +37,8 @@ Future<dynamic> parseAPIResponse<T, D>({
   required String defaultErrorMessage,
   bool? checkDefaultStatusCode,
   bool? returnTrueForSuccess,
-  ValueChanged<T>? onSuccess,
-  ValueChanged<ErrorCodeAndMessage>? onFailure,
+  Function(T)? onSuccess,
+  Function(ErrorCodeAndMessage)? onFailure,
 }) async {
   final res = await response;
 
