@@ -1,0 +1,19 @@
+name: http_simple
+description: More easy way to use http
+version: 0.0.4
+homepage:
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+
+flutter:
