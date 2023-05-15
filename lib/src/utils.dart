@@ -128,7 +128,7 @@ dynamic getPrettyJSONString(res) {
     if (res is String) {
       data = jsonDecode(res);
     } else {
-      data;
+      data = res;
     }
 
     var encoder = const JsonEncoder.withIndent('    ');
