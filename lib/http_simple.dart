@@ -1,7 +1,5 @@
 library;
 
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'src/_src_exp.dart';
 
@@ -63,9 +61,6 @@ Future<Response> get({
         response: response,
       );
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
@@ -134,9 +129,6 @@ Future<Response> post({
         response: response,
       );
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
@@ -204,9 +196,6 @@ Future<Response> put({
         response: response,
       );
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
@@ -273,9 +262,6 @@ Future<Response> patch({
         response: response,
       );
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
@@ -344,9 +330,6 @@ Future<Response> delete({
         response: response,
       );
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
@@ -461,9 +444,6 @@ Future<Response> apiCallForFile({
 
       return finalRes;
     }
-  } on SocketException catch (_) {
-    if (onNoInternet != null) onNoInternet();
-    return Response(status: ResponseStatus.connectionError);
   } catch (_) {
     return Response(status: ResponseStatus.unknownException);
   }
