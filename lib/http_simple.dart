@@ -39,7 +39,7 @@ Future<Response> get({
             '\nRequest Method: GET'
             '\nRequest Headers: $headers'
             '\nResponse Code: ${response.statusCode}'
-            '\nResponse Body: $body',
+            '\nResponse Body: ${getPrettyJSONString(body)}',
       );
 
       return response;
@@ -111,7 +111,7 @@ Future<Response> post({
             '\nRequest Headers: $headers'
             '\nRequest Body: $body'
             '\nResponse Code: ${response.statusCode}'
-            '\nResponse Body: ${response.body}',
+            '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
 
       return response;
@@ -183,7 +183,7 @@ Future<Response> put({
             '\nRequest Headers: $headers'
             '\nRequest Body: $body'
             '\nResponse Code: ${response.statusCode}'
-            '\nResponse Body: ${response.body}',
+            '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
 
       return response;
@@ -253,7 +253,7 @@ Future<Response> patch({
             '\nRequest Headers: $headers'
             '\nRequest Body: $body'
             '\nResponse Code: ${response.statusCode}'
-            '\nResponse Body: ${response.body}',
+            '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
 
       return response;
@@ -325,7 +325,7 @@ Future<Response> delete({
             '\nRequest Headers: $headers'
             '\nRequest Body: $body'
             '\nResponse Code: ${response.statusCode}'
-            '\nResponse Body: ${response.body}',
+            '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
 
       return response;
@@ -449,7 +449,7 @@ Future<Response> apiCallForFile({
                 '\nRequest Body: $body'
                 '\nResponse Code: ${res.statusCode}' +
             (needToPrintResponseLog
-                ? '\nResponse Body: ${res.body}'
+                ? '\nResponse Body: ${getPrettyJSONString(res.body)}'
                 : '\nResponse Body: <Data>'),
       );
 

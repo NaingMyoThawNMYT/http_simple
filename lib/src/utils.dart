@@ -120,3 +120,20 @@ Future<bool> checkInternetConnection() async {
     return false;
   }
 }
+
+dynamic getPrettyJSONString(res) {
+  try {
+    dynamic data;
+
+    if (res is String) {
+      data = jsonDecode(res);
+    } else {
+      data;
+    }
+
+    var encoder = const JsonEncoder.withIndent('    ');
+    return encoder.convert(data);
+  } catch (_) {
+    return res;
+  }
+}
