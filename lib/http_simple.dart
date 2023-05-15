@@ -62,7 +62,11 @@ Future<Response> get({
       );
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }
 
@@ -130,7 +134,11 @@ Future<Response> post({
       );
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }
 
@@ -197,7 +205,11 @@ Future<Response> put({
       );
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }
 
@@ -263,7 +275,11 @@ Future<Response> patch({
       );
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }
 
@@ -331,7 +347,11 @@ Future<Response> delete({
       );
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }
 
@@ -445,6 +465,10 @@ Future<Response> apiCallForFile({
       return finalRes;
     }
   } catch (_) {
-    return Response(status: ResponseStatus.unknownException);
+    if (await checkInternetConnection()) {
+      return Response(status: ResponseStatus.unknownException);
+    }
+
+    return Response(status: ResponseStatus.connectionError);
   }
 }

@@ -1,6 +1,6 @@
 name: http_simple
 description: More easy way to use http.
-version: 0.0.8
+version: 0.0.9
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

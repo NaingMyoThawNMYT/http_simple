@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+
 import '_src_exp.dart';
 
 Future<String> getFullURL(
@@ -107,5 +109,14 @@ Future<dynamic> parseAPIResponse<T, D>({
     }
 
     return errorResponse;
+  }
+}
+
+Future<bool> checkInternetConnection() async {
+  try {
+    final response = await http.get(Uri.parse('https://www.google.com'));
+    return response.statusCode == 200;
+  } catch (_) {
+    return false;
   }
 }
