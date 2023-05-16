@@ -33,7 +33,7 @@ Future<String> getFullURL(
 /// [modelWithFromJson] is the class what you want back if the [response] is success.
 /// [ErrorCodeAndMessage] will be returned if the [response] is fail.
 /// Note: class [modelWithFromJson] must have 'fromJson' method.
-Future<dynamic> parseAPIResponse<T, D>({
+Future<dynamic> parseAPIResponse<T>({
   required Future<Response> response,
   required T Function(Map<dynamic, dynamic>) fromJson,
   required String defaultErrorMessage,

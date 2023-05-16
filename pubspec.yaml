@@ -1,6 +1,6 @@
 name: http_simple
 description: More easy way to use http plugin with beautiful logging feature. Multi-platforms are supported.
-version: 0.0.12
+version: 0.0.13
 repository: https://github.com/NaingMyoThawNMYT/http_simple
 
 environment:
