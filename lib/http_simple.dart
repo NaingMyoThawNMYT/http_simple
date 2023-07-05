@@ -371,7 +371,7 @@ Future<Response> apiCallForFile({
   final List<String>? apiKeysForFiles,
   final List<AttachmentFile>? files,
   final Duration timeoutDuration = defaultTimeoutDuration,
-  bool needToPrintResponseLog = true,
+  final bool needToPrintResponseLog = true,
 }) async {
   final fullUrl = await getFullURL(url, params);
 
@@ -399,6 +399,7 @@ Future<Response> apiCallForFile({
         key,
         value.data,
         filename: value.fileNameWithExtension,
+        contentType: value.contentType,
       ));
     });
   } else if (files != null &&
