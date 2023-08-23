@@ -17,6 +17,7 @@ Future<Response> get({
   bool needToPrintResponseLog = true,
 }) async {
   final fullUrl = await getFullURL(url, params);
+
   http.Response response = http.Response('', 444);
 
   try {
@@ -27,10 +28,12 @@ Future<Response> get({
           tag: tag,
           message: '\nRequest URL: $fullUrl'
               '\nRequest Method: GET'
-              '\nRequest Headers: $headers'
+              '\nRequest Headers: ${getPrettyJSONString(headers)}'
               '\nRequest Timeout: $timeoutDuration',
         );
+
         if (onTimeout != null) onTimeout();
+
         return response;
       },
     ).then((http.Response response) {
@@ -39,7 +42,7 @@ Future<Response> get({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: GET'
-            '\nRequest Headers: $headers'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
             '\nResponse Code: ${response.statusCode}'
             '\nResponse Body: ${getPrettyJSONString(body)}',
       );
@@ -52,12 +55,11 @@ Future<Response> get({
         status: ResponseStatus.timeout,
       );
     } else {
-      if (onResponse != null) {
-        onResponse(Response(
-          status: ResponseStatus.ok,
-          response: response,
-        ));
-      }
+      onResponse?.call(Response(
+        status: ResponseStatus.ok,
+        response: response,
+      ));
+
       return Response(
         status: ResponseStatus.ok,
         response: response,
@@ -96,8 +98,8 @@ Future<Response> post({
           tag: tag,
           message: '\nRequest URL: $fullUrl'
               '\nRequest Method: POST'
-              '\nRequest Headers: $headers'
-              '\nRequest Body: $body'
+              '\nRequest Headers: ${getPrettyJSONString(headers)}'
+              '\nRequest Body: ${getPrettyJSONString(body)}'
               '\nRequest Timeout: $timeoutDuration',
         );
 
@@ -110,8 +112,8 @@ Future<Response> post({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: POST'
-            '\nRequest Headers: $headers'
-            '\nRequest Body: $body'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
+            '\nRequest Body: ${getPrettyJSONString(body)}'
             '\nResponse Code: ${response.statusCode}'
             '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
@@ -124,12 +126,11 @@ Future<Response> post({
         status: ResponseStatus.timeout,
       );
     } else {
-      if (onResponse != null) {
-        onResponse(Response(
-          status: ResponseStatus.ok,
-          response: response,
-        ));
-      }
+      onResponse?.call(Response(
+        status: ResponseStatus.ok,
+        response: response,
+      ));
+
       return Response(
         status: ResponseStatus.ok,
         response: response,
@@ -168,8 +169,8 @@ Future<Response> put({
           tag: tag,
           message: '\nRequest URL: $fullUrl'
               '\nRequest Method: PUT'
-              '\nRequest Headers: $headers'
-              '\nRequest Body: $body'
+              '\nRequest Headers: ${getPrettyJSONString(headers)}'
+              '\nRequest Body: ${getPrettyJSONString(body)}'
               '\nRequest Timeout: $timeoutDuration',
         );
 
@@ -182,8 +183,8 @@ Future<Response> put({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: PUT'
-            '\nRequest Headers: $headers'
-            '\nRequest Body: $body'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
+            '\nRequest Body: ${getPrettyJSONString(body)}'
             '\nResponse Code: ${response.statusCode}'
             '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
@@ -195,12 +196,11 @@ Future<Response> put({
         status: ResponseStatus.timeout,
       );
     } else {
-      if (onResponse != null) {
-        onResponse(Response(
-          status: ResponseStatus.ok,
-          response: response,
-        ));
-      }
+      onResponse?.call(Response(
+        status: ResponseStatus.ok,
+        response: response,
+      ));
+
       return Response(
         status: ResponseStatus.ok,
         response: response,
@@ -239,12 +239,13 @@ Future<Response> patch({
           tag: tag,
           message: '\nRequest URL: $fullUrl'
               '\nRequest Method: PATCH'
-              '\nRequest Headers: $headers'
-              '\nRequest Body: $body'
+              '\nRequest Headers: ${getPrettyJSONString(headers)}'
+              '\nRequest Body: ${getPrettyJSONString(body)}'
               '\nRequest Timeout: $timeoutDuration',
         );
 
         if (onTimeout != null) onTimeout();
+
         return response;
       },
     ).then((http.Response response) {
@@ -252,8 +253,8 @@ Future<Response> patch({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: PATCH'
-            '\nRequest Headers: $headers'
-            '\nRequest Body: $body'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
+            '\nRequest Body: ${getPrettyJSONString(body)}'
             '\nResponse Code: ${response.statusCode}'
             '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
@@ -265,12 +266,11 @@ Future<Response> patch({
         status: ResponseStatus.timeout,
       );
     } else {
-      if (onResponse != null) {
-        onResponse(Response(
-          status: ResponseStatus.ok,
-          response: response,
-        ));
-      }
+      onResponse?.call(Response(
+        status: ResponseStatus.ok,
+        response: response,
+      ));
+
       return Response(
         status: ResponseStatus.ok,
         response: response,
@@ -311,8 +311,8 @@ Future<Response> delete({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: DELETE'
-            '\nRequest Headers: $headers'
-            '\nRequest Body: $body'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
+            '\nRequest Body: ${getPrettyJSONString(body)}'
             '\nRequest Timeout: $timeoutDuration',
       );
 
@@ -324,8 +324,8 @@ Future<Response> delete({
         tag: tag,
         message: '\nRequest URL: $fullUrl'
             '\nRequest Method: DELETE'
-            '\nRequest Headers: $headers'
-            '\nRequest Body: $body'
+            '\nRequest Headers: ${getPrettyJSONString(headers)}'
+            '\nRequest Body: ${getPrettyJSONString(body)}'
             '\nResponse Code: ${response.statusCode}'
             '\nResponse Body: ${getPrettyJSONString(response.body)}',
       );
@@ -337,12 +337,11 @@ Future<Response> delete({
         status: ResponseStatus.timeout,
       );
     } else {
-      if (onResponse != null) {
-        onResponse(Response(
-          status: ResponseStatus.ok,
-          response: response,
-        ));
-      }
+      onResponse?.call(Response(
+        status: ResponseStatus.ok,
+        response: response,
+      ));
+
       return Response(
         status: ResponseStatus.ok,
         response: response,
@@ -425,9 +424,9 @@ Future<Response> apiCallForFile({
           tag: tag,
           message: '\nRequest URL: $fullUrl'
               '\nRequest Method: ${apiMethod.toString().split('.').last.toUpperCase()}'
-              '\nRequest Headers: $headers'
+              '\nRequest Headers: ${getPrettyJSONString(headers)}'
               '\nRequest Keys: ${keyAndfileMap?.entries.map((e) => e.key).toList()}'
-              '\nRequest Body: $body'
+              '\nRequest Body: ${getPrettyJSONString(body)}'
               '\nRequest Timeout: $timeoutDuration',
         );
 
@@ -447,13 +446,13 @@ Future<Response> apiCallForFile({
         // ignore: prefer_interpolation_to_compose_strings
         message: '\nRequest URL: $fullUrl'
                 '\nRequest Method: ${apiMethod.toString().split('.').last.toUpperCase()}'
-                '\nRequest Headers: $headers'
+                '\nRequest Headers: ${getPrettyJSONString(headers)}'
                 '\nRequest Keys: ${keyAndfileMap?.values.map((AttachmentFile f) => f.path).toList()}'
-                '\nRequest Body: $body'
+                '\nRequest Body: ${getPrettyJSONString(body)}'
                 '\nResponse Code: ${res.statusCode}' +
             (needToPrintResponseLog
                 ? '\nResponse Body: ${getPrettyJSONString(res.body)}'
-                : '\nResponse Body: <Data>'),
+                : '\nResponse Body: Log is off'),
       );
 
       final finalRes = Response(
@@ -461,9 +460,7 @@ Future<Response> apiCallForFile({
         response: res,
       );
 
-      if (onResponse != null) {
-        onResponse(finalRes);
-      }
+      onResponse?.call(finalRes);
 
       return finalRes;
     }

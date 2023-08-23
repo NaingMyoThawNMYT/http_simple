@@ -112,6 +112,73 @@ Future<dynamic> parseAPIResponse<T>({
   }
 }
 
+/// Default [successStatusCodes] value is ['200'].
+Future<(T?, D?)> parseAPIResponseV2<T, D>({
+  required final Future<Response> call,
+  List<String>? successStatusCodes,
+  required final T Function(Map<dynamic, dynamic>) fromJsonSuccess,
+  required final D Function(Map<dynamic, dynamic>) fromJsonFailure,
+  final Function(T)? onSuccess,
+  final Function(D)? onFailure,
+}) async {
+  final res = await call;
+
+  final statusCode = res.response?.statusCode.toString();
+
+  if (res.status == ResponseStatus.connectionError ||
+      res.status == ResponseStatus.timeout ||
+      res.status == ResponseStatus.unknownException) {
+    final resFailure = fromJsonFailure({
+      'code': statusCode,
+      'message': res.status == ResponseStatus.connectionError
+          ? 'No Internet Connection!'
+          : res.status == ResponseStatus.timeout
+              ? 'Connection timeout!'
+              : 'Unknown Exception!',
+    });
+
+    onFailure?.call(resFailure);
+
+    return (null, resFailure);
+  }
+
+  try {
+    final map = jsonDecode(res.response!.body);
+
+    successStatusCodes ??= ['200'];
+
+    if (successStatusCodes.contains(statusCode)) {
+      final resSuccess = fromJsonSuccess(map);
+
+      onSuccess?.call(resSuccess);
+
+      return (resSuccess, null);
+    } else {
+      final resFailure = fromJsonFailure(map);
+
+      onFailure?.call(resFailure);
+
+      return (null, resFailure);
+    }
+  } catch (error) {
+    final errorMsg = error.toString();
+
+    printDebugLogFail(
+      tag: 'parseAPIResponseV2',
+      message: errorMsg,
+    );
+
+    final resFailure = fromJsonFailure({
+      'code': statusCode,
+      'message': errorMsg,
+    });
+
+    onFailure?.call(resFailure);
+
+    return (null, resFailure);
+  }
+}
+
 Future<bool> checkInternetConnection() async {
   try {
     final response = await http.get(Uri.parse('https://www.google.com'));
