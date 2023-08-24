@@ -113,7 +113,7 @@ Future<dynamic> parseAPIResponse<T>({
 }
 
 /// Default [successStatusCodes] value is ['200'].
-Future<(T?, D?)> parseAPIResponseV2<T, D>({
+Future<({T? success, D? error})> parseAPIResponseV2<T, D>({
   required final Future<Response> call,
   List<String>? successStatusCodes,
   required final T Function(Map<dynamic, dynamic>) fromJsonSuccess,
@@ -139,7 +139,7 @@ Future<(T?, D?)> parseAPIResponseV2<T, D>({
 
     onFailure?.call(resFailure);
 
-    return (null, resFailure);
+    return (success: null, error: resFailure);
   }
 
   try {
@@ -152,13 +152,13 @@ Future<(T?, D?)> parseAPIResponseV2<T, D>({
 
       onSuccess?.call(resSuccess);
 
-      return (resSuccess, null);
+      return (success: resSuccess, error: null);
     } else {
       final resFailure = fromJsonFailure(map);
 
       onFailure?.call(resFailure);
 
-      return (null, resFailure);
+      return (success: null, error: resFailure);
     }
   } catch (error) {
     final errorMsg = error.toString();
@@ -175,7 +175,7 @@ Future<(T?, D?)> parseAPIResponseV2<T, D>({
 
     onFailure?.call(resFailure);
 
-    return (null, resFailure);
+    return (success: null, error: resFailure);
   }
 }
 
