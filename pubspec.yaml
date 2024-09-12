@@ -1,6 +1,6 @@
 name: http_simple
 description: More easy way to use http plugin with beautiful logging feature. Multi-platforms are supported.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/NaingMyoThawNMYT/http_simple
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   equatable: ^2.0.5
-  http: ^0.13.6
+  http: ^1.2.0
   http_parser: ^4.0.2
 
 dev_dependencies:
