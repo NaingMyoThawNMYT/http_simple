@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:http_simple/http_simple.dart';
 
 import '_src_exp.dart';
 
@@ -52,7 +53,7 @@ Future<dynamic> parseAPIResponse<T>({
     final error = ErrorCodeAndMessage(
       code: statusCode,
       message: res.status == ResponseStatus.connectionError
-          ? 'No Internet Connection!'
+          ? connectionErrorMessage ?? 'No Internet Connection!'
           : res.status == ResponseStatus.timeout
               ? 'Connection timeout!'
               : 'Unknown Exception!',
@@ -131,7 +132,7 @@ Future<({T? success, D? error})> parseAPIResponseV2<T, D>({
     final resFailure = fromJsonFailure({
       'code': statusCode,
       'message': res.status == ResponseStatus.connectionError
-          ? 'No Internet Connection!'
+          ? connectionErrorMessage ?? 'No Internet Connection!'
           : res.status == ResponseStatus.timeout
               ? 'Connection timeout!'
               : 'Unknown Exception!',
