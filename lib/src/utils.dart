@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:http_simple/http_simple.dart';
 
 import '_src_exp.dart';
