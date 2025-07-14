@@ -181,12 +181,8 @@ Future<({T? success, D? error})> parseAPIResponseV2<T, D>({
 }
 
 Future<bool> checkInternetConnection() async {
-  try {
-    final response = await http.get(Uri.parse('https://www.google.com'));
-    return response.statusCode == 200;
-  } catch (_) {
-    return false;
-  }
+  // TODO: need to use internet_connection_checker_plus package
+  return true;
 }
 
 dynamic getPrettyJSONString(res) {
