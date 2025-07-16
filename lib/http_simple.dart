@@ -2,6 +2,7 @@ library;
 
 import 'package:http/http.dart' as http;
 import 'src/_src_exp.dart';
+export 'src/_src_exp.dart';
 
 String? connectionErrorMessage;
 
